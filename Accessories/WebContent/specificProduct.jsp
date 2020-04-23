@@ -29,9 +29,6 @@
 						<p>SIZE: ${product.size}</p>
 						<p>STOCK: ${product.stock}</p>
 						<p><strong>${product.price} RON</strong></p>
-						<button type="button" class="btn btn-default btn-sm btn-outline-warning">
-			          		<span class="fas fa-balance-scale"></span> Add to compare
-			        	</button>
 						<c:if test="${not empty sessionScope.user}">
 						<div class="actionList">
 							<button type="button" class="btn btn-default btn-sm btn-outline-primary">

@@ -7,7 +7,7 @@
 		<title>tilbehør</title>
 		<%@include file="/head.jspf" %>
 	</head>
-	<body>
+	<body class="contact">
 		<%@include file="/navbar.jspf" %>
 		<div class="container">
 		    <%int count = 0;%>
@@ -17,12 +17,9 @@
 			if(count % 3 == 1)
 			{%><div class="row""><%}%>
 		        <div class="col-xs-4 prod-col">
-		        	<a href="ProductController?id=${product.id}"><img src="${product.image}" alt="" class="img-fluid rounded float-left zoom" style="width: 200px; height: 200px;"></a>
+		        	<a href="ProductController?id=${product.id}"><img src="${product.image}" alt="" class="img-fluid rounded float-left zoom" style="width: 300px; height: 300px;"></a>
 					<p>${product.name}</p>
 					<p><strong>${product.price} RON</strong></p>
-					<button type="button" class="btn btn-default btn-sm btn-outline-warning">
-		          		<span class="fas fa-balance-scale"></span> Add to compare
-		        	</button>
 					<c:if test="${not empty sessionScope.user}">
 					<div class="actionList">
 						<button type="button" class="btn btn-default btn-sm btn-outline-primary">
