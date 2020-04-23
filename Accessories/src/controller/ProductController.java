@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -8,6 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import DAO.ProductDAO;
+import util.Product;
 
 /**
  * Servlet implementation class ProductController
@@ -28,7 +32,11 @@ public class ProductController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		int id = Integer.parseInt(request.getParameter("id"));
+		ProductDAO p = ProductDAO.getInstance();
+		Product prod = p.getProduct(id);
+		request.getSession().setAttribute("product", prod);
+		response.sendRedirect("specificProduct.jsp");
 	}
 
 	/**

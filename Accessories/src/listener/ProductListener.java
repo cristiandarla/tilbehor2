@@ -50,9 +50,8 @@ public class ProductListener implements ServletContextListener {
 			statement = con.createStatement();
 			
 			//get products
-			ResultSet resultSet = statement.executeQuery("SELECT * FROM public.products");
+			ResultSet resultSet = statement.executeQuery("SELECT DISTINCT ON (NAME_PRODUCT) NAME_PRODUCT,* FROM public.products");
 			while(resultSet.next()) {
-				System.out.println(resultSet.toString());
 				p = new Product();
 				p.setBrand(resultSet.getString("brand_product"));
 				p.setCategory(resultSet.getString("category_product"));
@@ -64,6 +63,7 @@ public class ProductListener implements ServletContextListener {
 				p.setPrice(resultSet.getFloat("price_product"));
 				p.setSize(resultSet.getString("size_product"));
 				p.setStock(resultSet.getInt("stock_product"));
+				p.setId(resultSet.getInt("id"));
 				products.add(p);
 			}
 			arg0.getServletContext().setAttribute("products", products);

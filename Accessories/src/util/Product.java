@@ -4,12 +4,13 @@ public class Product {
 	private String name, image, description, color, size, material, category, brand;
 	float price;
 	int stock;
+	int id;
 
 	public Product() {
 	}
 
 	public Product(String name, String image, String color, String size, String material, String category, String brand,
-			float price, int stock) {
+			float price, int stock, int id) {
 		super();
 		this.name = name;
 		this.image = image;
@@ -20,6 +21,7 @@ public class Product {
 		this.brand = brand;
 		this.price = price;
 		this.stock = stock;
+		this.id = id;
 	}
 	
 	//getters
@@ -43,6 +45,8 @@ public class Product {
 
 	public int getStock() {return stock;}
 
+	public int getId() {return id;}
+
 	
 	//setters
 	public void setName(String name) {this.name = name;}
@@ -64,4 +68,6 @@ public class Product {
 	public void setPrice(float price) {this.price = price;}
 
 	public void setStock(int stock) {this.stock = stock;}
+
+	public void setId(int id) {this.id = id;}
 }

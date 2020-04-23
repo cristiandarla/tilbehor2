@@ -7,7 +7,7 @@
 		<title>tilbehør</title>
 		<%@include file="/head.jspf" %>
 	</head>
-	<body>
+	<body class="contact">
 		<%@include file="/navbar.jspf" %>
 		<div class="container">
 		    <%int count = 0;%>
@@ -17,17 +17,21 @@
 			if(count % 3 == 1)
 			{%><div class="row""><%}%>
 		        <div class="col-xs-4 prod-col">
-		        	<a href="ProductController"><img src="${product.image}" alt="" class="img-fluid img-thumbnail float-left zoom" style="height: 300px; width: 100%:"></a>
+		        	<a href="ProductController?id=${product.id}"><img src="${product.image}" alt="" class="img-fluid img-thumbnail float-left zoom" style="height: 300px; width: 100%:"></a>
 					<div style="padding: 5px 0px;">
-						<p>NAME: ${product.name}</p>
-						<p>COLOR: ${product.color}</p>
-						<p>SIZE: ${product.size}</p>
+						<p>${product.name}</p>
 						<p><strong>${product.price} RON</strong></p>
-						<a class="pull-left" href="#"> Add to Compare </a><br>
+						<button type="button" class="btn btn-default btn-sm btn-outline-warning">
+			          		<span class="fas fa-balance-scale"></span> Add to compare
+			        	</button>
 						<c:if test="${not empty sessionScope.user}">
 						<div class="actionList">
-							<a class="pull-left" href="#">Add to Wish List </a> <br>
-							<h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4><br>
+							<button type="button" class="btn btn-default btn-sm btn-outline-primary">
+				          		<span class="glyphicon glyphicon-heart-empty"></span> Add to wishlist
+				        	</button>
+						<button type="button" class="btn btn-default btn-sm btn-outline-primary">
+				          	<span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
+				        </button>
 						</div> 
 						</c:if>
 					</div>
