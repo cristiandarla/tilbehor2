@@ -14,21 +14,25 @@
 			<c:forEach var="product" items="${applicationScope.products}">
 				<c:if test="${product.description == \"male\"}">
 			<%count++; 
-			if(count % 4 == 1)
+			if(count % 3 == 1)
 			{%><div class="row""><%}%>
-		        <div class="col-xs-3">
-		        	<a href="ProductController"><img src="${product.image}" alt="" class="img-fluid img-thumbnail float-left" style="height: 200px"></a>
-					<p>${product.name}</p>
-					<p><strong>${product.price}</strong></p>
-					<a class="pull-left" href="#"> Add to Compare </a>
-					<c:if test="${not empty sessionScope.user}">
-					<div class="actionList">
-						<a class="pull-left" href="#">Add to Wish List </a> 
-					<h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-					</div> 
-					</c:if>
+		        <div class="col-xs-4 prod-col">
+		        	<a href="ProductController"><img src="${product.image}" alt="" class="img-fluid img-thumbnail float-left zoom" style="height: 300px; width: 100%:"></a>
+					<div style="padding: 5px 0px;">
+						<p>NAME: ${product.name}</p>
+						<p>COLOR: ${product.color}</p>
+						<p>SIZE: ${product.size}</p>
+						<p><strong>${product.price} RON</strong></p>
+						<a class="pull-left" href="#"> Add to Compare </a><br>
+						<c:if test="${not empty sessionScope.user}">
+						<div class="actionList">
+							<a class="pull-left" href="#">Add to Wish List </a> <br>
+							<h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4><br>
+						</div> 
+						</c:if>
+					</div>
 		        </div>
-		    <%if(count % 4 == 0)
+		    <%if(count % 3 == 0)
 				{%></div><%} %>							
 				</c:if>
 			</c:forEach>

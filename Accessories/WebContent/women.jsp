@@ -16,15 +16,17 @@
 			<%count++; 
 			if(count % 3 == 1)
 			{%><div class="row""><%}%>
-		        <div class="col-xs-4">
-		        	<a href="ProductController"><img src="${product.image}" alt="" class="img-fluid rounded float-left" style="width: 200px; height: 200px;"></a>
-					<p>${product.name}</p>
-					<p><strong>${product.price}</strong></p>
-					<a class="pull-left" href="#"> Add to Compare </a>
+		        <div class="col-xs-4 prod-col">
+		        	<a href="ProductController"><img src="${product.image}" alt="" class="img-fluid rounded float-left zoom" style="width: 200px; height: 200px;"></a>
+					<p>NAME: ${product.name}</p>
+					<p>COLOR: ${product.color}</p>
+					<p>SIZE: ${product.size}</p>
+					<p><strong>${product.price} RON</strong></p>
+					<a class="pull-left" href="#"> Add to Compare </a><br>
 					<c:if test="${not empty sessionScope.user}">
 					<div class="actionList">
-						<a class="pull-left" href="#">Add to Wish List </a> 
-					<h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
+						<a class="pull-left" href="#">Add to Wish List </a> <br>
+					<h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4><br>
 					</div> 
 					</c:if>
 		        </div>

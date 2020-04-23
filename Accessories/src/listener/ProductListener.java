@@ -42,12 +42,17 @@ public class ProductListener implements ServletContextListener {
          // TODO Auto-generated method stub
     	Product p;
     	List<Product> products = new ArrayList<>();
+    	List<String> prodF = new ArrayList<>();
+    	List<String> prodM = new ArrayList<>();
     	Statement statement;
 		try {
 	    	Connection con = DBConnection.getConnection();
 			statement = con.createStatement();
+			
+			//get products
 			ResultSet resultSet = statement.executeQuery("SELECT * FROM public.products");
 			while(resultSet.next()) {
+				System.out.println(resultSet.toString());
 				p = new Product();
 				p.setBrand(resultSet.getString("brand_product"));
 				p.setCategory(resultSet.getString("category_product"));
@@ -62,6 +67,20 @@ public class ProductListener implements ServletContextListener {
 				products.add(p);
 			}
 			arg0.getServletContext().setAttribute("products", products);
+			
+			//type of products female
+			resultSet = statement.executeQuery("select distinct category_product from products where description_product = 'female'");
+			while(resultSet.next()) {
+				prodF.add(resultSet.getString("category_product"));
+			}
+			arg0.getServletContext().setAttribute("typesProdF", prodF);
+			//type of products male
+			resultSet = statement.executeQuery("select distinct category_product from products where description_product = 'male'");
+			while(resultSet.next()) {
+				prodM.add(resultSet.getString("category_product"));
+			}
+			arg0.getServletContext().setAttribute("typesProdM", prodM);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

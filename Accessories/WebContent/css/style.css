@@ -147,3 +147,18 @@
 	right: 20%;
 	top: 250px;
 }
+
+.prod-col{
+  padding: 25px;
+}
+
+.zoom {
+  transition: transform .2s;
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  -ms-transform: scale(1.05); /* IE 9 */
+  -webkit-transform: scale(1.05); /* Safari 3-8 */
+  transform: scale(1.05); 
+}
