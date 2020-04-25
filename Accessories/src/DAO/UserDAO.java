@@ -98,13 +98,14 @@ public class UserDAO
 	public boolean addUser(User user, List<String> errors) {
 		if(!userExists(user.getUsername()) && !emailExists(user.getEmail())) {
 			PreparedStatement statement;
-			String sql = "insert into users(name,username,email,password) values(?,?,?,?)";
+			String sql = "insert into users(name,username,email,password,admin) values(?,?,?,?,?)";
 			try (Connection connection = DBConnection.getConnection()) {
 				statement = connection.prepareStatement(sql);
 				statement.setString(1,user.getName());
 				statement.setString(2,user.getUsername());
 				statement.setString(3,user.getEmail());
 				statement.setString(4,user.getPassword());
+				statement.setBoolean(5,false);
 				statement.executeUpdate();
 	            statement.close();
 	            connection.close();
