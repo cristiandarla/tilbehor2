@@ -41,7 +41,7 @@ public class AddProductController extends HttpServlet {
 		// TODO Auto-generated method stub
 
 
-		String name = request.getParameter("name");
+		/*String name = request.getParameter("name");
 		String type = request.getParameter("type");
 		String desc = request.getParameter("desc");
 		String color = request.getParameter("color");
@@ -81,7 +81,7 @@ public class AddProductController extends HttpServlet {
 		} catch (MBeanException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 	/**

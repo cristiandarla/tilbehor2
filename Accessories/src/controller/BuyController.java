@@ -35,7 +35,7 @@ public class BuyController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		int id = Integer.parseInt(request.getParameter("id"));
+		/*int id = Integer.parseInt(request.getParameter("id"));
 		int qty = Integer.parseInt(request.getParameter("qty"));
 		ProductDAO pdao = ProductDAO.getInstance();
 		Product prod = pdao.getProduct(id);
@@ -66,7 +66,7 @@ public class BuyController extends HttpServlet {
 		request.getSession().setAttribute("cart", items);
 		
 		request.getRequestDispatcher("shoppingCart.jsp").forward(request, response);
-		//response.sendRedirect("product.jsp");
+		//response.sendRedirect("product.jsp");*/
 	}
 
 	/**
