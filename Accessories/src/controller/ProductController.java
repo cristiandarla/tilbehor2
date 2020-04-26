@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,9 +32,13 @@ public class ProductController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
-		ProductDAO p = ProductDAO.getInstance();
-		Product prod = p.getProduct(id);
-		request.setAttribute("product", prod);
+		Product prod;
+		List<Product> products =(List<Product>) request.getServletContext().getAttribute("products");
+		for(Product p : products)
+			if(p.getId() == id) {
+				prod = p;
+				request.setAttribute("product", prod);
+			}
 		request.getRequestDispatcher("specificProduct.jsp").forward(request, response);
 	}
 

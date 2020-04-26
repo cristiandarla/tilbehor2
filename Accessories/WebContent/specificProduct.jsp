@@ -18,7 +18,6 @@
 		}
 	</script>
 	<body class="contact">
-		${requestScope.product.stock}
 		<%@include file="/navbar.jspf" %>
 		<div class="container">
 		    <div class="row" style="padding: 25px 0px;">
@@ -39,12 +38,21 @@
 						<h5><strong>SIZE:</strong> ${product.size}</h5>
 						
 		    		<form method="post" action="BuyController?id=${product.id}">
-						<div class="form-element space-10">
-		              		<label for="stock">Quantity</label>
-		                    <input class="form-control" type="number" id="qty" name="qty">
+		    			<c:choose>
+		    			<c:when test="${product.stock == 0}">
+		    			<div class="form-element space-10">
+		                    <input readonly class="form-control-plaintext" type="text" value="OUT OF STOCK">
 		                </div>
+		    			</c:when>
+		    			<c:otherwise>
+		    			<div class="form-element space-10">
+		              		<label for="stock">Quantity</label>
+		                    <input class="form-control" type="number" id="qty" name="qty" required>
+		                </div>
+		    			</c:otherwise>
+		    			</c:choose>
 						<h3><strong>${product.price} RON</strong></h3>
-						<c:if test="${not empty sessionScope.user}">
+						<c:if test="${not empty sessionScope.user && product.stock != 0}">
 						<div class="actionList">
 						<a href="WishlistController?id=${product.id}"><button type="button" class="btn btn-sm btn-outline-primary zoom">
 				          		<span class="glyphicon glyphicon-heart-empty"></span> Add to Wishlist

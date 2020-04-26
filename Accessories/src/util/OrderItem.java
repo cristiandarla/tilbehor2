@@ -34,6 +34,24 @@ public class OrderItem {
 	public float getPrice() {
 		return price;
 	}
-	
-	
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setQty(int qty) {
+		this.qty = qty;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
 }

@@ -14,13 +14,11 @@
       </c:if>
       <c:if test="${empty sessionScope.user}">
       	<li><a href="login.jsp">Login</a></li>
-      </c:if>
-      <c:if test="${not empty sessionScope.user}">
-      	<li><a href="LogoutController">Logout</a></li>
-      </c:if>		      
+      </c:if>	      
       <li><a href="register.jsp">Register</a></li>
       <li><a href="contact.jsp">Contact</a></li>
       <c:if test="${not empty sessionScope.user}">
+      <li><a href="LogoutController">Logout</a></li>
       <li><a href="user.jsp">Hello, ${sessionScope.user}!</a></li>
       <li><a href="shoppingCart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
       <li><a href="wishList.jsp"><span class="far fa-heart"></span></a></li>

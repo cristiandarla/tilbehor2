@@ -1,29 +1,26 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import util.OrderItem;
-import util.Product;
+import DAO.UserDAO;
+import util.User;
 
 /**
- * Servlet implementation class DeleteController
+ * Servlet implementation class UserController
  */
-@WebServlet("/DeleteController")
-public class DeleteController extends HttpServlet {
+@WebServlet("/UserController")
+public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteController() {
+    public UserController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,28 +30,11 @@ public class DeleteController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("id"));
-		int qty = Integer.parseInt(request.getParameter("qty"));
-		
-
-		List<Product> products = (ArrayList<Product>) request.getServletContext().getAttribute("products");
-		for(Product prod: products) {
-			if(prod.getId() == id) {
-				prod.setStock(prod.getStock() + qty);
-				break;
-			}
-		}
-		request.getServletContext().setAttribute("products", products);
-		
-		List<OrderItem> items = (ArrayList<OrderItem>) request.getSession().getAttribute("cart");
-		for(OrderItem item : items) {
-			if(item.getId() == id) {
-				items.remove(item);
-				break;
-			}
-		}
-		request.getSession().setAttribute("cart", items);
-		response.sendRedirect("shoppingCart.jsp");
+		String username =(String) request.getSession().getAttribute("user");
+		UserDAO udao = UserDAO.getInstance();
+		User user = udao.getUser(username);
+		request.getSession().setAttribute("userDetails", user);
+		response.sendRedirect("product.jsp");
 	}
 
 	/**

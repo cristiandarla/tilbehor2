@@ -10,20 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import util.OrderItem;
-import util.Product;
+import util.WishlistItem;
 
 /**
- * Servlet implementation class DeleteController
+ * Servlet implementation class DeleteWController
  */
-@WebServlet("/DeleteController")
-public class DeleteController extends HttpServlet {
+@WebServlet("/DeleteWController")
+public class DeleteWController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteController() {
+    public DeleteWController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,29 +31,16 @@ public class DeleteController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		List<WishlistItem> items = (ArrayList<WishlistItem>) request.getSession().getAttribute("wishlist");
 		int id = Integer.parseInt(request.getParameter("id"));
-		int qty = Integer.parseInt(request.getParameter("qty"));
-		
-
-		List<Product> products = (ArrayList<Product>) request.getServletContext().getAttribute("products");
-		for(Product prod: products) {
-			if(prod.getId() == id) {
-				prod.setStock(prod.getStock() + qty);
-				break;
-			}
-		}
-		request.getServletContext().setAttribute("products", products);
-		
-		List<OrderItem> items = (ArrayList<OrderItem>) request.getSession().getAttribute("cart");
-		for(OrderItem item : items) {
+		for(WishlistItem item : items) {
 			if(item.getId() == id) {
 				items.remove(item);
 				break;
 			}
 		}
-		request.getSession().setAttribute("cart", items);
-		response.sendRedirect("shoppingCart.jsp");
+		request.getSession().setAttribute("wishlist", items);
+		response.sendRedirect("wishList.jsp");
 	}
 
 	/**

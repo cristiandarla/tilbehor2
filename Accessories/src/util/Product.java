@@ -2,9 +2,9 @@ package util;
 
 public class Product {
 	private String name, image, description, color, size, material, category, brand;
-	float price;
-	int stock;
-	int id;
+	private float price;
+	private int stock;
+	private int id;
 
 	public Product() {
 	}

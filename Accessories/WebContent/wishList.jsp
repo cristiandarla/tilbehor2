@@ -25,6 +25,7 @@
                     </div>
                     <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
                        	<h4 class="product-name"><strong>${wishlist.name}</strong></h4>
+                       	
                     </div>
                         <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
                         	<div class="col-4 col-sm-4 col-md-4">
@@ -36,7 +37,7 @@
                                 <h4><strong>${wishlist.price}<span class="text-muted"> RON</span></strong></h4>
                             </div>
                             <div class="col-2 col-sm-2 col-md-2 text-right">
-                                <form method="post" action="DeleteWController?productName=${wishlist.id}">
+                                <form method="post" action="DeleteWController?id=${wishlist.id}">
 	                                <button type="submit" class="btn btn-outline-danger btn-xs" >
 	                                    <i class="fa fa-trash" aria-hidden="true"></i>
 	                                </button>

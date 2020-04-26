@@ -6,11 +6,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>tilbehør - Home</title>
-		<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-		<link href="css/style.css" rel="stylesheet" type="text/css">
-		<link href="css/style_home.css" rel="stylesheet" type="text/css">
+		<%@include file="/head.jspf" %>
 		
 	</head>
 	<body class="register">

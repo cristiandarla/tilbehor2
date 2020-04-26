@@ -34,7 +34,7 @@ public class WishlistController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		/*int id = Integer.parseInt(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id"));
 		ProductDAO pdao = ProductDAO.getInstance();
 		Product prod = pdao.getProduct(id);
 		String name = prod.getName();
@@ -50,7 +50,7 @@ public class WishlistController extends HttpServlet {
 		}
 		items.add(new WishlistItem(name, price, img, id, size));
 		request.getSession().setAttribute("wishlist", items);
-		response.sendRedirect("wishlist.jsp");*/
+		response.sendRedirect("wishList.jsp");
 	}
 
 	/**

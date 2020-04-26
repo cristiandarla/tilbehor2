@@ -141,4 +141,24 @@ public class UserDAO
 		return admin;
 		
 	}
+	
+	public User getUser(String username) {
+		User user = new User();
+		PreparedStatement statement;
+		String sql = "select * from users where username='" + username + "'";
+		try (Connection connection = DBConnection.getConnection()) {
+			statement = connection.prepareStatement(sql);
+			ResultSet rs = statement.executeQuery();
+			rs.next();
+			user.setName(rs.getString("name"));
+			user.setEmail(rs.getString("email"));
+			user.setUsername(username);
+            statement.close();
+            connection.close();
+		}catch (SQLException e) {
+            System.out.println("Connection failure.");
+            e.printStackTrace();
+        }	
+		return user;
+	}
 }

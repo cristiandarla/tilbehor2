@@ -1,29 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>ACCESSORIES - Recover Password</title>
-		<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-		<link href="style.css" rel="stylesheet" type="text/css">
-		<link href="style_home.css" rel="stylesheet" type="text/css">
+		<title>tilbehør - Home</title>
+		<%@include file="/head.jspf" %>
+		
 	</head>
-	<body>
-		<nav class="navtop">
-			<div>
-				<h1><a href="home.jsp">ACCESSORIES</a></h1>
-			</div>
-		</nav>
+	<body class="register">
+	
+		<nav class="navbar-default navbar-static-top">
+			  <div class="container">
+			    <div class="navbar-header">
+			      <a class="navbar-brand" href="home.jsp">tilbehør</a>
+			    </div>
+			    <ul class="nav navbar-nav navbar-right collapse navbar-collapse">
+			      <li><a href="register.jsp"><i class="fas fa-user-plus"></i>Sign up!</a></li>
+			    </ul>
+			  </div>
+			</nav>	  
 		<div class="login">
-			<h1>Recover Password</h1>
-			<form action="RegisterController" method="post">
-				<label for="email">
+			<h1>Login</h1>
+			<form action="" method="post">
+				<label for="username">
 					<i class="far fa-envelope"></i>
 				</label>
-				<input type="email" name="email" placeholder="Email" id="email" required>
-				<input type="submit" value="Register">
+				<input type="email" name="email" placeholder="email" required>
+				<input type="submit" value="Login">
 			</form>
 		</div>
 	</body>
