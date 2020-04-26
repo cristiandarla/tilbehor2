@@ -1,6 +1,7 @@
 package DAO;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -49,5 +50,68 @@ public class ProductDAO
 			e.printStackTrace();
 		}
 		return p;
+	}
+	
+	public boolean addProduct(Product p) {
+		
+		PreparedStatement statement;
+		String sql = "insert into products(brand_product, category_product, color_product, description_product, "
+				+ "image_product, material_product, name_product, price_product, size_product, stock_product, id) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		try (Connection connection = DBConnection.getConnection()) {
+			statement = connection.prepareStatement(sql);
+			statement.setString(1,p.getBrand());
+			statement.setString(2,p.getCategory());
+			statement.setString(3,p.getColor());
+			statement.setString(4,p.getDescription());
+			statement.setString(5,p.getImage());
+			statement.setString(6,p.getMaterial());
+			statement.setString(7,p.getName());
+			statement.setFloat(8,p.getPrice());
+			statement.setString(9,p.getSize());
+			statement.setInt(10,p.getStock());
+			statement.setInt(11,p.getId());
+			statement.executeUpdate();
+            statement.close();
+            connection.close();
+            return true;
+		}catch (SQLException e) {
+            System.out.println("Connection failure.");
+            e.printStackTrace();
+        }
+		return false;
+	}
+	
+	public boolean removeProduct(int id) {
+		
+		PreparedStatement statement;
+		String sql = "delete from products where id='" + id + "'";
+		try (Connection connection = DBConnection.getConnection()) {
+			statement = connection.prepareStatement(sql);
+			statement.executeUpdate();
+            statement.close();
+            connection.close();
+            System.out.println("solved");
+            return true;
+		}catch (SQLException e) {
+            System.out.println("Connection failure.");
+            e.printStackTrace();
+        }
+		return false;
+	}
+	
+	public int getID() {
+		Statement statement;
+		String sql = "select max(id) from products";
+		try (Connection connection = DBConnection.getConnection()) {
+			statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+			rs.next();
+			return rs.getInt("max");
+		}catch (SQLException e) {
+            System.out.println("Connection failure.");
+            e.printStackTrace();
+        }
+		System.out.println("vezi ca a luat-o pe ulei");
+		return 0;
 	}
 }

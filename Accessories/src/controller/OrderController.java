@@ -1,27 +1,23 @@
 package controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.ProductDAO;
-import util.Product;
-
 /**
- * Servlet implementation class ProductController
+ * Servlet implementation class OrderController
  */
-@WebServlet("/ProductController")
-public class ProductController extends HttpServlet {
+@WebServlet("/OrderController")
+public class OrderController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductController() {
+    public OrderController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,11 +26,9 @@ public class ProductController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		ProductDAO p = ProductDAO.getInstance();
-		Product prod = p.getProduct(id);
-		request.setAttribute("product", prod);
-		request.getRequestDispatcher("specificProduct.jsp").forward(request, response);
+		// TODO Auto-generated method stub
+		request.getSession().setAttribute("cart", null);
+		response.sendRedirect("product.jsp");
 	}
 
 	/**

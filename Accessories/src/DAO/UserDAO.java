@@ -121,4 +121,24 @@ public class UserDAO
 		}
 		return false;
 	}
+	
+	public boolean getAdmin(String user) {
+		PreparedStatement statement;
+		String sql = "select admin from users where name = '" + user + "'";
+		Boolean admin = false;
+		try (Connection connection = DBConnection.getConnection()) {
+			statement = connection.prepareStatement(sql);
+			ResultSet rs = statement.executeQuery();
+			rs.next();
+			admin = rs.getBoolean(1);
+            statement.close();
+            connection.close();
+            return admin;
+		}catch (SQLException e) {
+            System.out.println("Connection failure.");
+            e.printStackTrace();
+        }
+		return admin;
+		
+	}
 }

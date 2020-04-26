@@ -249,3 +249,17 @@
     width: 100%;
   }
 }
+
+.space{
+	padding: 35px;
+}
+.space-10{
+	padding: 10px 0px;
+}
+.inpt{
+	padding: 0;
+	border: 0;
+}
+h5{
+	margin: 5px;
+}

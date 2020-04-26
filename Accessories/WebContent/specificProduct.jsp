@@ -7,8 +7,18 @@
 		<title>tilbehør</title>
 		<%@include file="/head.jspf" %>
 	</head>
+	<script>
+		function Validate(stock) {
+			var qty = document.getElementById("qty").value;
+			if (qty > stock) {
+		   		alert("Quantity bigger than stock!");
+		       	return false;
+	  		}
+			return true;
+		}
+	</script>
 	<body class="contact">
-		
+		${requestScope.product.stock}
 		<%@include file="/navbar.jspf" %>
 		<div class="container">
 		    <div class="row" style="padding: 25px 0px;">
@@ -22,25 +32,32 @@
 		        </div>
 		        <div class="col-xs-5">
 		        	<div style="padding: 15px 15px;">
-						<p>NAME: ${product.name}</p>
-						<p>BRAND: ${product.brand}</p>
-						<p>COLOR: ${product.color}</p>
-						<p>MATERIAL: ${product.material}</p>
-						<p>SIZE: ${product.size}</p>
-						<p>STOCK: ${product.stock}</p>
-						<p><strong>${product.price} RON</strong></p>
+						<h5><strong>NAME:</strong> ${product.name}</h5>
+						<h5><strong>BRAND:</strong> ${product.brand}</h5>
+						<h5><strong>COLOR:</strong> ${product.color}</h5>
+						<h5><strong>MATERIAL:</strong> ${product.material}</h5>
+						<h5><strong>SIZE:</strong> ${product.size}</h5>
+						
+		    		<form method="post" action="BuyController?id=${product.id}">
+						<div class="form-element space-10">
+		              		<label for="stock">Quantity</label>
+		                    <input class="form-control" type="number" id="qty" name="qty">
+		                </div>
+						<h3><strong>${product.price} RON</strong></h3>
 						<c:if test="${not empty sessionScope.user}">
 						<div class="actionList">
-							<button type="button" class="btn btn-default btn-sm btn-outline-primary">
-				          		<span class="glyphicon glyphicon-heart-empty"></span> Add to wishlist
-				        	</button>
-						<button type="button" class="btn btn-default btn-sm btn-outline-primary">
-				          	<span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
+						<a href="WishlistController?id=${product.id}"><button type="button" class="btn btn-sm btn-outline-primary zoom">
+				          		<span class="glyphicon glyphicon-heart-empty"></span> Add to Wishlist
+				        	</button></a>
+						<button type="submit" class="btn btn-sm btn-outline-primary zoom" onclick="return Validate(${product.stock})">
+				          	<span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart
 				        </button>
 						</div> 
 						</c:if>
+				
+		    		</form>
 					</div>
-		        </div>
+				</div>
 		        <div class="col-xs-3">
 		        </div>
 		    </div>

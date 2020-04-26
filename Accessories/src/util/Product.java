@@ -9,7 +9,7 @@ public class Product {
 	public Product() {
 	}
 
-	public Product(String name, String image, String color, String size, String material, String category, String brand,
+	public Product(String name, String desc, String image, String color, String size, String material, String category, String brand,
 			float price, int stock, int id) {
 		super();
 		this.name = name;
@@ -22,6 +22,7 @@ public class Product {
 		this.price = price;
 		this.stock = stock;
 		this.id = id;
+		this.description = desc;
 	}
 	
 	//getters

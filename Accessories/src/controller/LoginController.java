@@ -40,14 +40,16 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserDAO user = UserDAO.getInstance();
+		String username = request.getParameter("username");
 		List<String> errors;
 		try {
-			errors = user.loginValidation(request.getParameter("username"), request.getParameter("password"));
+			errors = user.loginValidation(username, request.getParameter("password"));
 			if(errors.size() != 0) {
 				request.setAttribute("errors", errors.get(0));
 				request.getRequestDispatcher("login.jsp").forward(request,response);
 			}else {
 				request.getSession().setAttribute("user", request.getParameter("username"));
+				request.getSession().setAttribute("admin", user.getAdmin(username));
 				response.sendRedirect("product.jsp");
 			}
 		} catch (NoSuchAlgorithmException e) {

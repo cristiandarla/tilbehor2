@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,16 +13,16 @@ import DAO.ProductDAO;
 import util.Product;
 
 /**
- * Servlet implementation class ProductController
+ * Servlet implementation class RemoveProductController
  */
-@WebServlet("/ProductController")
-public class ProductController extends HttpServlet {
+@WebServlet("/RemoveProductController")
+public class RemoveProductController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductController() {
+    public RemoveProductController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,11 +31,19 @@ public class ProductController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		int id = Integer.parseInt(request.getParameter("id"));
-		ProductDAO p = ProductDAO.getInstance();
-		Product prod = p.getProduct(id);
-		request.setAttribute("product", prod);
-		request.getRequestDispatcher("specificProduct.jsp").forward(request, response);
+		System.out.println(id);
+		ProductDAO prod = ProductDAO.getInstance();
+		prod.removeProduct(id);
+		List<Product> products = (List<Product>) request.getServletContext().getAttribute("products");
+		for(Product product : products)
+			if(product.getId() == id) {
+				products.remove(product);
+				break;
+			}
+		request.getSession().setAttribute("products", products);
+		response.sendRedirect("product.jsp");
 	}
 
 	/**
