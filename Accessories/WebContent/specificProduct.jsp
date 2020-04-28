@@ -11,7 +11,7 @@
 		function Validate(stock) {
 			var qty = document.getElementById("qty").value;
 			if (qty > stock) {
-		   		alert("Quantity bigger than stock!");
+		   		swal("Oops!", "Quantity bigger than stock!!", "error");
 		       	return false;
 	  		}
 			return true;
@@ -44,15 +44,13 @@
 		                    <input readonly class="form-control-plaintext" type="text" value="OUT OF STOCK">
 		                </div>
 		    			</c:when>
-		    			<c:otherwise>
-		    			<div class="form-element space-10">
-		              		<label for="stock">Quantity</label>
-		                    <input class="form-control" type="number" id="qty" name="qty" required>
-		                </div>
-		    			</c:otherwise>
 		    			</c:choose>
 						<h3><strong>${product.price} RON</strong></h3>
 						<c:if test="${not empty sessionScope.user && product.stock != 0}">
+						<div class="form-element space-10">
+		              		<label for="stock">Quantity</label>
+		                    <input class="form-control" type="number" id="qty" name="qty" required>
+		                </div>
 						<div class="actionList">
 						<a href="WishlistController?id=${product.id}"><button type="button" class="btn btn-sm btn-outline-primary zoom">
 				          		<span class="glyphicon glyphicon-heart-empty"></span> Add to Wishlist
@@ -92,5 +90,6 @@
 			  modal.style.display = "none";
 			}
 		</script>
+	<%@include file="/footer.jspf" %>
 	</body>
 </html>

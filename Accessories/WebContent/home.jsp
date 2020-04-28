@@ -16,5 +16,6 @@
 			<p>Sed cursus rhoncus tincidunt. Nam fermentum ultrices lorem. Nullam sagittis sem et venenatis dignissim. Duis a tortor porta, iaculis turpis eu, suscipit arcu. Sed justo mi, ullamcorper sit amet urna et, consequat eleifend mi. Vestibulum bibendum ac dolor vitae pretium. Morbi a dui id erat interdum ultrices. Vestibulum fringilla vehicula odio, sit amet posuere massa mollis vel.</p>
 			<p>Praesent at lorem dui. Suspendisse eros urna, pretium a hendrerit quis, dapibus ac sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat nunc tellus. Aliquam hendrerit malesuada tortor, eu vehicula lectus condimentum non. Pellentesque sapien eros, laoreet sed gravida a, vestibulum sed magna. Cras eros urna, rhoncus pulvinar porta a, tincidunt at felis. Nunc mollis nibh sit amet nisi commodo, quis vulputate nisl placerat. Integer porta sapien id ex cursus lobortis. Sed ac nibh quam. Pellentesque malesuada facilisis quam eget ultrices.</p>
 		</div>
+	<%@include file="/footer.jspf" %>
 	</body>
 </html>

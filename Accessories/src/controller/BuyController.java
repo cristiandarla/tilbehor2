@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.ProductDAO;
 import util.OrderItem;
 import util.Product;
 
@@ -46,6 +45,18 @@ public class BuyController extends HttpServlet {
 		for(Product p : products)
 			if(p.getId() == id) {
 				p.setStock(p.getStock() - qty);
+				if(p.getStock() == 0) {
+					List<Product> prods;
+					if(request.getServletContext().getAttribute("alertProds") == null) {
+						prods = new ArrayList<>();
+						prods.add(p);
+						
+					}else {
+						prods =(List<Product>) request.getServletContext().getAttribute("alertProds");
+						prods.add(p);
+					}
+					request.getServletContext().setAttribute("alertProds", prods);
+				}				
 				name = p.getName();
 				price = p.getPrice();
 				img = p.getImage();
@@ -79,7 +90,6 @@ public class BuyController extends HttpServlet {
 		request.getSession().setAttribute("cart", items);
 		
 		request.getRequestDispatcher("shoppingCart.jsp").forward(request, response);
-		//response.sendRedirect("product.jsp");
 	}
 
 	/**

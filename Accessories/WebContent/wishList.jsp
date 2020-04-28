@@ -17,14 +17,37 @@
             <h4>Get some products from <a href="product.jsp">here</a>!</h4>
             </c:if>
             <div class="container">
-				<c:forEach var="wishlist" items="${sessionScope.wishlist}">
-			       	
+            <c:if test="${not empty sessionScope.wishlist}">
+            <div class="row">
+			       	<div class="col-12 col-sm-12 col-md-2 text-center">
+			       	</div>
+                    <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
+                       	<h4 class="product-name"><strong>NAME</strong></h4>
+                    </div>
+                        <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
+                        	<div class="col-4 col-sm-4 col-md-4">
+                                <div class="size">
+                                    <h4><strong>SIZE</strong></h4>
+                                </div>
+                            </div>
+                            <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
+                                <h4><strong>PRICE</strong></h4>
+                            </div>
+                            <div class="col-1 col-sm-1 col-md-1 text-right">
+                            </div>
+                            <div class="col-1 col-sm-1 col-md-1 text-right">
+                            </div>
+                        </div>
+					</div>
+					<hr>
+            </c:if>
+				<c:forEach var="wishlist" items="${sessionScope.wishlist}"> 	
             	<div class="row">
 			       	<div class="col-12 col-sm-12 col-md-2 text-center">
-                    	<img class="img-fluid img-thumbnail float-left" src="${wishlist.img}" alt="prewiew" width="100" height="100">
+                    	<a href="ProductController?id=${wishlist.id}"><img class="img-fluid img-thumbnail float-left" src="${wishlist.img}" alt="prewiew" width="100" height="100"></a>
                     </div>
                     <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
-                       	<h4 class="product-name"><strong>${wishlist.name}</strong></h4>
+                       	<a href="ProductController?id=${wishlist.id}"><h4 class="product-name"><strong>${wishlist.name}</strong></h4></a>
                        	
                     </div>
                         <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
@@ -36,7 +59,14 @@
                             <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
                                 <h4><strong>${wishlist.price}<span class="text-muted"> RON</span></strong></h4>
                             </div>
-                            <div class="col-2 col-sm-2 col-md-2 text-right">
+                            <div class="col-1 col-sm-1 col-md-1 text-right">
+                                <form method="post" action="#">
+	                                <button type="submit" class="btn btn-outline-danger btn-xs" onclick="return Function()" >
+	                                    <i class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i>
+	                                </button>
+                                </form>
+                            </div>
+                            <div class="col-1 col-sm-1 col-md-1 text-right">
                                 <form method="post" action="DeleteWController?id=${wishlist.id}">
 	                                <button type="submit" class="btn btn-outline-danger btn-xs" >
 	                                    <i class="fa fa-trash" aria-hidden="true"></i>
@@ -49,6 +79,7 @@
 				</c:forEach>
 			
         </div>
+	<%@include file="/footer.jspf" %>
     </body>
 </html>
 

@@ -41,6 +41,13 @@ public class DeleteController extends HttpServlet {
 		for(Product prod: products) {
 			if(prod.getId() == id) {
 				prod.setStock(prod.getStock() + qty);
+				List<Product> prods =(List<Product>) request.getServletContext().getAttribute("alertProds");
+				for(Product p : prods) {
+					if(p.getId() == prod.getId()) {
+						prods.remove(p);
+						break;
+					}
+				}
 				break;
 			}
 		}

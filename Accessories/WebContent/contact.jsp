@@ -5,52 +5,53 @@
 	<head>
 		<title>ACCESSORIES - Login</title>
 		<%@include file="/head.jspf" %>
+		
 	</head>
-	<body class="contact">
+	<body class="home">
 		
 		<%@include file="/navbar.jspf" %>
-		<div class="container-contact100">
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.677095930234!2d26.050500615393865!3d44.439785479102184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b201c227bb49d5%3A0xd90c887a15dee2ac!2sFaculty%20of%20Engineering%20in%20Foreign%20Languages!5e0!3m2!1sen!2sro!4v1585929447836!5m2!1sen!2sro" width="800" height="600" frameborder="15" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" method="post" action="ContactController">
-				<span class="contact100-form-title">
-					Contact Us
-				</span>
-
-				<div class="wrap-input100 validate-input" data-validate="Name is required">
-					<span class="label-input100">Name</span>
-					<input class="input100" type="text" name="name" placeholder="Name...">
-					<span class="focus-input100"></span>
+		<div class="container contact-data">
+			<div class="row space">
+				<div class="col embed-responsive embed-responsive-16by9">
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.677095930234!2d26.050500615393865!3d44.439785479102184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b201c227bb49d5%3A0xd90c887a15dee2ac!2sFaculty%20of%20Engineering%20in%20Foreign%20Languages!5e0!3m2!1sen!2sro!4v1585929447836!5m2!1sen!2sro" width="100%" height="500px" style="" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 				</div>
-
-				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-					<span class="label-input100">Email</span>
-					<input class="input100" type="text" name="email" placeholder="Email addess...">
-					<span class="focus-input100"></span>
+			</div>
+			<div class="row space">
+				<div class="col">
+					<h4><strong>Address:</strong>&nbsp;Splaiul Independen&#x21Bei 313, Bucharest, CP 060042, Romania</h4>
+					<h4><strong>Phone:</strong> &nbsp;+40 745 xxx xxx</h4>
 				</div>
-
-				<div class="wrap-input100">
-					<span class="label-input100">Phone</span>
-					<input class="input100" type="text" name="phone" placeholder="Phone Number...">
-					<span class="focus-input100"></span>
+			</div>
+			<div class="row space">
+				<h2>Contact us here:</h2>
+				<div class="col space-10">
+					<form action="contactController" method="post">
+					  <div class="form-group">
+					    <label for="formGroupExampleInput">Name</label>
+					    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Name" name="name" required>
+					  </div>
+					  <div class="form-group">
+					    <label for="exampleInputEmail1">Email address</label>
+					    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" required>
+					    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+					  </div>
+					  <div class="form-group">
+					    <label for="formGroupExampleInput">Subject</label>
+					    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Subject" name="subject" required>
+					  </div>
+					  <div class="form-group">
+					    <label for="exampleFormControlTextarea1">Message</label>
+    					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="message" required="required"></textarea>
+					  </div>
+					  <div class="form-check">
+					    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="privacy">
+					    <label class="form-check-label" for="exampleCheck1">privacy, blah blah blah blah</label>
+					  </div>
+					  <button type="submit" class="btn btn-primary" onclick="return Function()">Submit</button>
+					</form>
 				</div>
-
-				<div class="wrap-input100 validate-input" data-validate = "Message is required">
-					<span class="label-input100">Message</span>
-					<textarea class="input100" name="message" placeholder="Questions/Comments..."></textarea>
-					<span class="focus-input100"></span>
-				</div>
-
-				<div class="container-contact100-form-btn">
-					<div class="wrap-contact100-form-btn">
-						<div class="contact100-form-bgbtn"></div>
-						<button class="contact100-form-btn">
-							Send
-						</button>
-					</div>
-				</div>
-			</form>
+			</div>
 		</div>
-	</div>
+	<%@include file="/footer.jspf" %>
 	</body>
 </html>

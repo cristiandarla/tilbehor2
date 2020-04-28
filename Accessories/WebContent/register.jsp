@@ -63,6 +63,7 @@
 				<input type="submit" value="Register" onclick="return Validate()">
 			</form>
 		</div>
+	<%@include file="/footer.jspf" %>
 	</body>
 	
 </html>

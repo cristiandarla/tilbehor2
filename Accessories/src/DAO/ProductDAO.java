@@ -44,7 +44,7 @@ public class ProductDAO
 				p.setStock(resultSet.getInt("stock_product"));
 				p.setId(resultSet.getInt("id"));
 			}
-			
+			resultSet.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

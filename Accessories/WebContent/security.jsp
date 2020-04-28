@@ -31,5 +31,6 @@
 				<input type="submit" value="Login">
 			</form>
 		</div>
+	<%@include file="/footer.jspf" %>
 	</body>
 </html>

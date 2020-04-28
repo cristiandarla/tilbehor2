@@ -52,6 +52,7 @@ public class UserDAO
             }else {
             	errors.add("Wrong password or username");
             }
+    		resultSet.close();
 		}catch (SQLException e) {
 	        System.out.println("Connection failure.");
 	        e.printStackTrace();
@@ -68,6 +69,7 @@ public class UserDAO
             resultSet.next();
             if(resultSet.getBoolean(1))
             	return true;
+            resultSet.close();
             statement.close();
             connection.close();
 		}catch (SQLException e) {
@@ -86,6 +88,7 @@ public class UserDAO
             resultSet.next();
             if(resultSet.getBoolean(1))
             	return true;
+            resultSet.close();
             statement.close();
             connection.close();
 		}catch (SQLException e) {
@@ -131,6 +134,7 @@ public class UserDAO
 			ResultSet rs = statement.executeQuery();
 			rs.next();
 			admin = rs.getBoolean(1);
+			rs.close();
             statement.close();
             connection.close();
             return admin;

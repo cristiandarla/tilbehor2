@@ -30,5 +30,6 @@
 			</c:forEach>
 			</div>	
 		</div>
+	<%@include file="/footer.jspf" %>
 	</body>
 </html>

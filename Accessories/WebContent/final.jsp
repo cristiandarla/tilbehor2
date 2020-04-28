@@ -10,12 +10,13 @@
     <body>
         <div id="content">
         <%@include file="/navbar.jspf" %>
-            <h1>Products bought:</h1>
-            <c:if test="${empty sessionScope.cart}">
-            <p>Your shopping cart is empty!</p>
-            <p>Get some products from <a href="product.jsp">here</a>!</p>
-            </c:if>
-            <div class="container space">
+            <div class="space">
+	            <h1>Products bought:</h1>
+	            <c:if test="${empty sessionScope.cart}">
+	            <p>Your shopping cart is empty!</p>
+	            <p>Get some products from <a href="product.jsp">here</a>!</p>
+	            </c:if>
+	            <div class="container space">
 				<c:forEach var="cart" items="${sessionScope.cart}">
 			       	
             	<div class="row">
@@ -38,19 +39,22 @@
 					</div>
                     <hr>
 				</c:forEach>
+				<c:set var="cart" scope="session" value="${null}"></c:set>
 			<div class="row">
 				<div class="col-xs-10">
 				</div>
 				<div class="col-xs-2">
-					<form method="post" action="OrderController">
+					<form method="post" action="product.jsp">
 					<button type="submit" class="btn btn-succes">
                            <span class="fas fa-home"></span> Back Home
                     </button>
 					</form>
 				</div>
 			</div>
+			</div>
         </div>
         </div>
+	<%@include file="/footer.jspf" %>
     </body>
 </html>
 
