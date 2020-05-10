@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import DAO.ProductDAO;
 import util.OrderItem;
 import util.Product;
+import util.WishlistItem;
 
 /**
  * Servlet implementation class DeleteController
@@ -33,35 +35,42 @@ public class DeleteController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("id"));
-		int qty = Integer.parseInt(request.getParameter("qty"));
 		
+		if(request.getSession().getAttribute("user") != null) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			int qty = Integer.parseInt(request.getParameter("qty"));
+			
 
-		List<Product> products = (ArrayList<Product>) request.getServletContext().getAttribute("products");
-		for(Product prod: products) {
-			if(prod.getId() == id) {
-				prod.setStock(prod.getStock() + qty);
-				List<Product> prods =(List<Product>) request.getServletContext().getAttribute("alertProds");
-				for(Product p : prods) {
-					if(p.getId() == prod.getId()) {
-						prods.remove(p);
-						break;
+			List<Product> products = (ArrayList<Product>) request.getServletContext().getAttribute("products");
+			for(Product prod: products) {
+				if(prod.getId() == id) {
+					prod.setStock(prod.getStock() + qty);
+					if(request.getServletContext().getAttribute("alertProds") != null) {
+						List<Product> prods =(List<Product>) request.getServletContext().getAttribute("alertProds");
+						for(Product p : prods) {
+							if(p.getId() == prod.getId()) {
+								prods.remove(p);
+								break;
+							}
+						}
 					}
+					break;
 				}
-				break;
 			}
-		}
-		request.getServletContext().setAttribute("products", products);
-		
-		List<OrderItem> items = (ArrayList<OrderItem>) request.getSession().getAttribute("cart");
-		for(OrderItem item : items) {
-			if(item.getId() == id) {
-				items.remove(item);
-				break;
+			request.getServletContext().setAttribute("products", products);
+			
+			List<OrderItem> items = (ArrayList<OrderItem>) request.getSession().getAttribute("cart");
+			for(OrderItem item : items) {
+				if(item.getId() == id) {
+					items.remove(item);
+					break;
+				}
 			}
+			request.getSession().setAttribute("cart", items);
+			response.sendRedirect("shoppingCart.jsp");
+		}else {
+			response.sendRedirect("home.jsp");
 		}
-		request.getSession().setAttribute("cart", items);
-		response.sendRedirect("shoppingCart.jsp");
 	}
 
 	/**

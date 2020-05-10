@@ -32,18 +32,22 @@ public class RemoveProductController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("id"));
-		System.out.println(id);
-		ProductDAO prod = ProductDAO.getInstance();
-		prod.removeProduct(id);
-		List<Product> products = (List<Product>) request.getServletContext().getAttribute("products");
-		for(Product product : products)
-			if(product.getId() == id) {
-				products.remove(product);
-				break;
-			}
-		request.getSession().setAttribute("products", products);
-		response.sendRedirect("product.jsp");
+		if(request.getSession().getAttribute("user") != null) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			System.out.println(id);
+			ProductDAO prod = ProductDAO.getInstance();
+			prod.removeProduct(id);
+			List<Product> products = (List<Product>) request.getServletContext().getAttribute("products");
+			for(Product product : products)
+				if(product.getId() == id) {
+					products.remove(product);
+					break;
+				}
+			request.getSession().setAttribute("products", products);
+			response.sendRedirect("product.jsp");
+		}else {
+			response.sendRedirect("home.jsp");
+		}
 	}
 
 	/**

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html>
      <head>
@@ -16,7 +17,7 @@
 	            <p>Your shopping cart is empty!</p>
 	            <p>Get some products from <a href="product.jsp">here</a>!</p>
 	            </c:if>
-	            <div class="container space">
+	            <div class="container-fluid">
 				<c:forEach var="cart" items="${sessionScope.cart}">
 			       	
             	<div class="row">
@@ -28,7 +29,7 @@
                     </div>
                         <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
                             <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
-                                <h4><strong>${cart.price}<span class="text-muted"> RON</span></strong></h4>
+                                <h4><strong><fmt:formatNumber type = "number" maxFractionDigits="2" value = "${cart.price}" /><span class="text-muted"> RON</span></strong></h4>
                             </div>
                             <div class="col-4 col-sm-4 col-md-4">
                                 <div class="quantity">
@@ -41,10 +42,10 @@
 				</c:forEach>
 				<c:set var="cart" scope="session" value="${null}"></c:set>
 			<div class="row">
-				<div class="col-xs-10">
+				<div class="col-10 col-xs-10">
 				</div>
-				<div class="col-xs-2">
-					<form method="post" action="product.jsp">
+				<div class="col-2 col-xs-2">
+					<form method="post" action="home.jsp">
 					<button type="submit" class="btn btn-succes">
                            <span class="fas fa-home"></span> Back Home
                     </button>

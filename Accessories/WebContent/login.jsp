@@ -5,22 +5,22 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>tilbehør - Home</title>
+		<title>tilbehør - login</title>
 		<%@include file="/head.jspf" %>
 		
 	</head>
 	<body class="register">
 	
-		<nav class="navbar-default navbar-static-top">
-			  <div class="container">
-			    <div class="navbar-header">
-			      <a class="navbar-brand" href="home.jsp">tilbehør</a>
-			    </div>
-			    <ul class="nav navbar-nav navbar-right collapse navbar-collapse">
-			      <li><a href="register.jsp"><i class="fas fa-user-plus"></i>Sign up!</a></li>
-			    </ul>
-			  </div>
-			</nav>	  
+		<nav class="navbar-default navbar navbar-expand-lg">
+		  <div class="container">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="home.jsp">tilbehør</a>
+		    </div>
+		    <ul class="navbar-nav navbar-right">
+		      <li class="nav-item"><a class="nav-link" href="register.jsp"><i class="fas fa-user-plus"></i>Sign up!</a></li>
+		    </ul>
+		  </div>
+		</nav>	  
 		<div class="login">
 			<h1>Login</h1>
 			<form action="LoginController" method="post">
@@ -33,9 +33,9 @@
 				</label>
 				<input type="password" name="password" placeholder="Password" id="password" required>
 				<c:forEach var="erori" items="${requestScope.errors}">
-					<p>${pageScope.erori}</p>
+					<h6 style="color: red;text-transform: uppercase;">${pageScope.erori}</h6>
 				</c:forEach>
-				<p>Forgot your password? Click <a href="security.jsp">here</a></p>
+				<h6>Forgot your password? Click <a href="security.jsp">here</a></h6>
 				<input type="submit" value="Login">
 			</form>
 		</div>

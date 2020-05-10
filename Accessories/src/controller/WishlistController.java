@@ -34,23 +34,28 @@ public class WishlistController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int id = Integer.parseInt(request.getParameter("id"));
-		ProductDAO pdao = ProductDAO.getInstance();
-		Product prod = pdao.getProduct(id);
-		String name = prod.getName();
-		float price = prod.getPrice();
-		String img = prod.getImage();
-		String size = prod.getSize();
-		
-		List<WishlistItem> items;
-		if(request.getSession().getAttribute("wishlist") == null) {
-			items = new ArrayList<>();
-		}else { 
-			items = (ArrayList<WishlistItem>) request.getSession().getAttribute("wishlist");
+		if(request.getSession().getAttribute("user") != null) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			ProductDAO pdao = ProductDAO.getInstance();
+			Product prod = pdao.getProduct(id);
+			String name = prod.getName();
+			float price = prod.getPrice();
+			String img = prod.getImage();
+			String size = prod.getSize();
+			int stock = prod.getStock();
+			
+			List<WishlistItem> items;
+			if(request.getSession().getAttribute("wishlist") == null) {
+				items = new ArrayList<>();
+			}else { 
+				items = (ArrayList<WishlistItem>) request.getSession().getAttribute("wishlist");
+			}
+			items.add(new WishlistItem(name, price, img, id, size, stock));
+			request.getSession().setAttribute("wishlist", items);
+			response.sendRedirect("wishList.jsp");
+		}else {
+			response.sendRedirect("home.jsp");
 		}
-		items.add(new WishlistItem(name, price, img, id, size));
-		request.getSession().setAttribute("wishlist", items);
-		response.sendRedirect("wishList.jsp");
 	}
 
 	/**

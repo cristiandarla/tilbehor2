@@ -29,7 +29,7 @@ public class LogoutController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session=request.getSession();  
-        session.setAttribute("user", null);  
+        session.setAttribute("user", null);     
         session.setAttribute("admin", null);  
         session.setAttribute("cart", null);
         response.sendRedirect("home.jsp");

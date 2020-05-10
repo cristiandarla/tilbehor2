@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>tilbehør - Home</title>
+		<title>tilbehør- home</title>
 		<%@include file="/head.jspf" %>
 	</head>
 	<body class="home">

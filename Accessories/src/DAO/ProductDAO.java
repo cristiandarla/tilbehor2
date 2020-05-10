@@ -81,6 +81,7 @@ public class ProductDAO
 		return false;
 	}
 	
+	//remove remove
 	public boolean removeProduct(int id) {
 		
 		PreparedStatement statement;

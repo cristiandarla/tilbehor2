@@ -38,7 +38,7 @@ public class databaseController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		/*Product p;
+		Product p;
     	List<Product> products = new ArrayList<>();
     	Statement statement;
 		try {
@@ -68,7 +68,7 @@ public class databaseController extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.setAttribute("products", products);
-		request.getRequestDispatcher("product.jsp").forward(request, response);*/
+		request.getRequestDispatcher("product.jsp").forward(request, response);
 	}
 
 	/**

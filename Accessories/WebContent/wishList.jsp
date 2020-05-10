@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
      <head>
-		<title>Login</title>
+		<title>wishlist</title>
 		<%@include file="/head.jspf" %>
 	</head>
     <body>
@@ -16,70 +16,66 @@
             <h4>Your wishlist is empty!</h4>
             <h4>Get some products from <a href="product.jsp">here</a>!</h4>
             </c:if>
-            <div class="container">
+            <div class="container-fluid">
             <c:if test="${not empty sessionScope.wishlist}">
             <div class="row">
-			       	<div class="col-12 col-sm-12 col-md-2 text-center">
+			       	<div class="col-2 col-xs-12 text-center">
 			       	</div>
-                    <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
+                    <div class="col-4 col-xs-12 text-xs-center">
                        	<h4 class="product-name"><strong>NAME</strong></h4>
                     </div>
-                        <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
-                        	<div class="col-4 col-sm-4 col-md-4">
-                                <div class="size">
-                                    <h4><strong>SIZE</strong></h4>
-                                </div>
-                            </div>
-                            <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
-                                <h4><strong>PRICE</strong></h4>
-                            </div>
-                            <div class="col-1 col-sm-1 col-md-1 text-right">
-                            </div>
-                            <div class="col-1 col-sm-1 col-md-1 text-right">
-                            </div>
-                        </div>
+                   	<div class="col-2 col-xs-4">
+                           <div class="size">
+                               <h4><strong>SIZE</strong></h4>
+                           </div>
+                       </div>
+                       <div class="col-2 col-xs-4 text-xs-right">
+                           <h4><strong>PRICE</strong></h4>
+                       </div>
+                       <div class="col-1 col-xs-2 text-right">
+                       </div>
+                       <div class="col-1 col-xs-2 text-right">
+                       </div>
 					</div>
 					<hr>
             </c:if>
-				<c:forEach var="wishlist" items="${sessionScope.wishlist}"> 	
+				<c:forEach var="wishlist" items="${sessionScope.wishlist}">
             	<div class="row">
-			       	<div class="col-12 col-sm-12 col-md-2 text-center">
-                    	<a href="ProductController?id=${wishlist.id}"><img class="img-fluid img-thumbnail float-left" src="${wishlist.img}" alt="prewiew" width="100" height="100"></a>
+			       	<div class="col-2 col-xs-12 text-center">
+                    	<a href="SpecificProductController?id=${wishlist.id}"><img class="img-fluid img-thumbnail float-left" src="${wishlist.img}" alt="preview" width="100" height="100"></a>
                     </div>
-                    <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
-                       	<a href="ProductController?id=${wishlist.id}"><h4 class="product-name"><strong>${wishlist.name}</strong></h4></a>
-                       	
+                    <div class="col-4 col-xs-12 text-xs-center">
+                       	<h4 class="product-name"><a href="SpecificProductController?id=${wishlist.id}"><strong>${wishlist.name}</strong></a></h4>
                     </div>
-                        <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
-                        	<div class="col-4 col-sm-4 col-md-4">
-                                <div class="size">
-                                    <h4><strong>${wishlist.size}</strong></h4>
-                                </div>
-                            </div>
-                            <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
-                                <h4><strong>${wishlist.price}<span class="text-muted"> RON</span></strong></h4>
-                            </div>
-                            <div class="col-1 col-sm-1 col-md-1 text-right">
-                                <form method="post" action="#">
-	                                <button type="submit" class="btn btn-outline-danger btn-xs" onclick="return Function()" >
-	                                    <i class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i>
-	                                </button>
-                                </form>
-                            </div>
-                            <div class="col-1 col-sm-1 col-md-1 text-right">
-                                <form method="post" action="DeleteWController?id=${wishlist.id}">
-	                                <button type="submit" class="btn btn-outline-danger btn-xs" >
-	                                    <i class="fa fa-trash" aria-hidden="true"></i>
-	                                </button>
-                                </form>
-                            </div>
-                        </div>
+					<div class="col-2 col-xs-4">
+					       <div class="size">
+					           <h4><strong>${wishlist.size}</strong></h4>
+					    </div>
+					</div>
+					<div class="col-2 col-xs-4 text-xs-right">
+					<h4><strong>${wishlist.price}<span class="text-muted"> RON</span></strong></h4>
+					</div>
+					<div class="btn-group" role="group" aria-label="wishlist buttons">
+						 <div class="col-1 col-xs-2 text-right">
+					     <form method="post" action="ProductController?id=${wishlist.id}">
+					      <button type="submit" class="btn btn-primary btn-xs" >
+					          <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+					      </button>
+					     </form>
+					 </div>
+					 <div class="col-1 col-xs-2 text-right">
+					     <form method="post" action="DeleteWController?id=${wishlist.id}">
+					      <button type="submit" class="btn btn-primary btn-xs" >
+					          <i class="fa fa-trash" aria-hidden="true"></i>
+					      </button>
+					     </form>
+					 </div>
+					</div>
 					</div>
                     <hr>
 				</c:forEach>
-			
+
         </div>
 	<%@include file="/footer.jspf" %>
     </body>
 </html>
-

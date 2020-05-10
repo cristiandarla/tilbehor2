@@ -50,7 +50,7 @@ public class LoginController extends HttpServlet {
 			}else {
 				request.getSession().setAttribute("user", request.getParameter("username"));
 				request.getSession().setAttribute("admin", user.getAdmin(username));
-				response.sendRedirect("UserController");
+				response.sendRedirect("home.jsp");
 			}
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block

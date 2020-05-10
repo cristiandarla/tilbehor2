@@ -79,7 +79,7 @@ public class UserDAO
 		return false;
 	}
 	
-	private boolean emailExists(String email) {
+	public boolean emailExists(String email) {
 		Statement statement;
 		ResultSet resultSet;
 		try (Connection connection = DBConnection.getConnection()) {
@@ -157,6 +157,7 @@ public class UserDAO
 			user.setName(rs.getString("name"));
 			user.setEmail(rs.getString("email"));
 			user.setUsername(username);
+			user.setId(rs.getInt("id"));
             statement.close();
             connection.close();
 		}catch (SQLException e) {
@@ -164,5 +165,53 @@ public class UserDAO
             e.printStackTrace();
         }	
 		return user;
+	}
+	
+	public boolean resetPassword(String newPass, String email) throws NoSuchAlgorithmException {
+		PreparedStatement statement;
+		String sql = "update users\n" + 
+					"set password = ?\n" + 
+					"where email = ?";
+		try (Connection connection = DBConnection.getConnection()) {
+			statement = connection.prepareStatement(sql);
+			statement.setString(1,bytesToHex(encode(newPass.getBytes())));
+			statement.setString(2, email);
+			statement.executeUpdate();
+			statement.close();
+            connection.close();			
+		}catch (SQLException e) {
+            System.out.println("Connection failure.");
+            e.printStackTrace();
+        }
+		return false;
+	}
+	
+	public boolean changePassword(String newPass, String oldPass, String username) throws NoSuchAlgorithmException {
+		Statement statement;
+		String sql = "select password from users where username='" + username + "'";
+		String sql1 = "update users\n" + 
+					"set password = ?\n" + 
+					"where username = ?";
+		try (Connection connection = DBConnection.getConnection()) {
+			statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+			rs.next();
+			if(rs.getString(1).equals(bytesToHex(encode(oldPass.getBytes())))) {
+				PreparedStatement s;
+				s = connection.prepareStatement(sql1);
+				s.setString(1,bytesToHex(encode(newPass.getBytes())));
+				s.setString(2, username);
+				s.executeUpdate();
+				statement.close();
+	            connection.close();
+				return true;
+			}else{
+				return false;
+			}
+		}catch (SQLException e) {
+            System.out.println("Connection failure.");
+            e.printStackTrace();
+        }
+		return false;
 	}
 }

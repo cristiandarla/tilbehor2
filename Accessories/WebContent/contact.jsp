@@ -18,18 +18,27 @@
 			</div>
 			<div class="row space">
 				<div class="col">
-					<h4><strong>Address:</strong>&nbsp;Splaiul Independen&#x21Bei 313, Bucharest, CP 060042, Romania</h4>
+					<h4><strong>Address:</strong>&nbsp;Splaiul Independen&#x21B;ei 313, Bucharest, CP 060042, Romania</h4>
 					<h4><strong>Phone:</strong> &nbsp;+40 745 xxx xxx</h4>
 				</div>
 			</div>
 			<div class="row space">
-				<h2>Contact us here:</h2>
 				<div class="col space-10">
 					<form action="contactController" method="post">
-					  <div class="form-group">
+					<c:choose>
+					<c:when test="${not empty sessionScope.user}">
+					<div class="form-group">
+					    <label for="formGroupExampleInput">Name</label>
+					    <input type="text" class="form-control" id="formGroupExampleInput" value="${sessionScope.user}" name="name" required>
+					</div>
+					</c:when>
+					<c:otherwise>
+					<div class="form-group">
 					    <label for="formGroupExampleInput">Name</label>
 					    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Name" name="name" required>
 					  </div>
+					</c:otherwise>
+					</c:choose>
 					  <div class="form-group">
 					    <label for="exampleInputEmail1">Email address</label>
 					    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" required>

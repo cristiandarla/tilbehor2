@@ -11,24 +11,27 @@
 	</head>
 	<body class="register">
 	
-		<nav class="navbar-default navbar-static-top">
-			  <div class="container">
-			    <div class="navbar-header">
-			      <a class="navbar-brand" href="home.jsp">tilbehør</a>
-			    </div>
-			    <ul class="nav navbar-nav navbar-right collapse navbar-collapse">
-			      <li><a href="register.jsp"><i class="fas fa-user-plus"></i>Sign up!</a></li>
-			    </ul>
-			  </div>
-			</nav>	  
+		<nav class="navbar-default navbar navbar-expand-lg">
+		  <div class="container">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="home.jsp">tilbehør</a>
+		    </div>
+		    <ul class="navbar-nav navbar-right">
+		      <li class="nav-item"><a class="nav-link" href="register.jsp"><i class="fas fa-user-plus"></i>Sign up!</a></li>
+		    </ul>
+		  </div>
+		</nav>	  
 		<div class="login">
-			<h1>Login</h1>
-			<form action="" method="post">
-				<label for="username">
+			<h1>Forget password</h1>
+			<form action="ResetPasswordController" method="post">
+				<label for="email">
 					<i class="far fa-envelope"></i>
 				</label>
 				<input type="email" name="email" placeholder="email" required>
-				<input type="submit" value="Login">
+				<c:forEach var="erori" items="${requestScope.errors}">
+					<p style="color: red;text-transform: uppercase;">${erori}</p>
+				</c:forEach>
+				<input type="submit" value="Submit">
 			</form>
 		</div>
 	<%@include file="/footer.jspf" %>

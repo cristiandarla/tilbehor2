@@ -67,4 +67,48 @@ public class OrderDAO {
         }
 		return orders;
 	}
+	public List<Order> getOrdersClient(int idUser) {
+		List<Order> orders = new ArrayList<>();
+		Statement statement;
+		String sql ="select * from orders where id_user = " + idUser;
+		String sql1 = "select * from order_items where id = ";
+		try (Connection connection = DBConnection.getConnection()) {
+			statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+			while(rs.next()) {
+				int id = rs.getInt("id");
+				Date date = rs.getDate("date");
+				float totalPrice = rs.getFloat("total_price");
+				Order order = new Order();
+				order.setDate(date);
+				order.setId(id);
+				order.setIdUser(idUser);
+				order.setTotalPrice(totalPrice);
+				orders.add(order);
+			}
+			
+			for(Order order : orders) {
+				int id = order.getId();
+				ArrayList<OrderItem> items = new ArrayList<OrderItem>();
+				rs = statement.executeQuery(sql1 + id);
+				while(rs.next()) {
+					int idProd = rs.getInt("id_product");
+					int qty = rs.getInt("qty");
+					
+					ProductDAO pdao = ProductDAO.getInstance();
+					Product prod = pdao.getProduct(idProd);
+					OrderItem ordItem = new OrderItem(prod.getName(), qty, prod.getPrice(), prod.getImage(), prod.getId());
+					items.add(ordItem);
+				}
+				order.setItems(items);
+			}
+			rs.close();
+            statement.close();
+            connection.close();
+		}catch (SQLException e) {
+            System.out.println("Connection failure.");
+            e.printStackTrace();
+        }
+		return orders;
+	}
 }

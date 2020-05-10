@@ -4,9 +4,19 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class User {
+	private int id;
 	private String name, email, password, username;
 
 	public User() {
+	}
+	
+	public User(int id, String name, String email, String password, String username) throws NoSuchAlgorithmException {
+		super();
+		this.name = name;
+		this.email = email;
+		this.password = bytesToHex(encode(password.getBytes()));
+		this.username = username;
+		this.id = id;
 	}
 	
 	public User(String name, String email, String password, String username) throws NoSuchAlgorithmException {
@@ -47,6 +57,14 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	private byte[] encode(byte[] text) throws NoSuchAlgorithmException{

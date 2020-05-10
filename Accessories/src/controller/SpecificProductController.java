@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.OrderDAO;
-import util.Order;
-import util.WishlistItem;
+import DAO.ProductDAO;
+import util.Product;
 
 /**
- * Servlet implementation class DeleteWController
+ * Servlet implementation class ProductController
  */
-@WebServlet("/DeleteWController")
-public class DeleteWController extends HttpServlet {
+@WebServlet("/SpecificProductController")
+public class SpecificProductController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteWController() {
+    public SpecificProductController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,16 +31,15 @@ public class DeleteWController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<WishlistItem> items = (ArrayList<WishlistItem>) request.getSession().getAttribute("wishlist");
 		int id = Integer.parseInt(request.getParameter("id"));
-		for(WishlistItem item : items) {
-			if(item.getId() == id) {
-				items.remove(item);
-				break;
+		Product prod;
+		List<Product> products =(List<Product>) request.getServletContext().getAttribute("products");
+		for(Product p : products)
+			if(p.getId() == id) {
+				prod = p;
+				request.setAttribute("product", prod);
 			}
-		}
-		request.getSession().setAttribute("wishlist", items);
-		response.sendRedirect("wishList.jsp");
+		request.getRequestDispatcher("specificProduct.jsp").forward(request, response);
 		
 	}
 

@@ -4,13 +4,13 @@
 <!DOCTYPE html>
 <html>
      <head>
-		<title>Login</title>
+		<title>tilbehør - admin options</title>
 		<%@include file="/head.jspf" %>
 	</head>
     <body>
     	<%@include file="/navbar.jspf" %>
         <div class="space">
-            <div class="container">
+            <div class="container-fluid">
             	<div class="row">
             		<div class="col-xs-12 col-sm">
             			<h1>Select what you want to do:</h1>
@@ -24,18 +24,26 @@
             	</div>
             	
             	<h1>Alerts:</h1>
-			    <c:forEach var="alert" items="${applicationScope.alertProds}">
+            	<c:choose>
+            	<c:when test="${empty applicationScope.alertProds}">
+            	<h3>No alert! Hurray!&#127881;&#127881;</h3>
+            	</c:when>
+            	<c:otherwise>
+            	<c:forEach var="alert" items="${applicationScope.alertProds}">
             	<div class="row">
             		<div class="col-xs-8 col-sm-8">
 						  <h4>Product <a href="ProductController?id=${alert.id}">${alert.name}</a> is OUT OF STOCK!</h4>			            
             		</div>
             		<div class="col-xs-4 col-sm-4">
-            			<a href="#"><button type="submit" class="btn btn-success" class="">Add Product</button></a>
+            			<a href="#"><button type="submit" class="btn btn-success" class="">Add Stock</button></a>
 			        	<a href="#"><button type="submit" class="btn btn-primary">Postpone alert</button></a>
             		</div>
             		<hr>
             	</div>
             	</c:forEach>
+            	</c:otherwise>
+            	</c:choose>
+			    
             </div>
         </div>
 	<%@include file="/footer.jspf" %>

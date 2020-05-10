@@ -33,11 +33,15 @@ public class TransactionController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		List<OrderItem> items = (ArrayList<OrderItem>) request.getSession().getAttribute("cart");
-		CartDAO cart = CartDAO.getInstance();
-		String user = (String) request.getSession().getAttribute("user");
-		cart.placeOrder(items, user);
-		response.sendRedirect("final.jsp");
+		if(request.getSession().getAttribute("user") != null) {
+			List<OrderItem> items = (ArrayList<OrderItem>) request.getSession().getAttribute("cart");
+			CartDAO cart = CartDAO.getInstance();
+			String user = (String) request.getSession().getAttribute("user");
+			cart.placeOrder(items, user);
+			response.sendRedirect("final.jsp");
+		}else {
+			response.sendRedirect("home.jsp");
+		}
 	}
 
 	/**

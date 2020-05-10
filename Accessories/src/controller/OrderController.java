@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import DAO.OrderDAO;
 import util.Order;
+import util.Product;
 
 /**
  * Servlet implementation class OrderController
@@ -32,10 +33,22 @@ public class OrderController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		OrderDAO odao = OrderDAO.getInstance();
-		List<Order> orders = odao.getOrders();
-		request.setAttribute("orders", orders);
-		request.getRequestDispatcher("orders.jsp").forward(request, response);
+		if(request.getSession().getAttribute("user") != null) {
+			if(request.getParameter("client") == null) {
+				OrderDAO odao = OrderDAO.getInstance();
+				List<Order> orders = odao.getOrders();
+				request.setAttribute("orders", orders);
+				request.getRequestDispatcher("orders.jsp").forward(request, response);
+			}else {
+				int idUser = Integer.parseInt(request.getParameter("id"));
+				OrderDAO odao = OrderDAO.getInstance();
+				List<Order> orders = odao.getOrdersClient(idUser);
+				request.setAttribute("orders", orders);
+				request.getRequestDispatcher("ordersClient.jsp").forward(request, response);
+			}
+		}else {
+			response.sendRedirect("home.jsp");
+		}
 	}
 
 	/**

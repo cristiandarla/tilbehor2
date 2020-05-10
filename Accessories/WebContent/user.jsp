@@ -13,25 +13,36 @@
             <div class="space">
 	            <h1>User:</h1>
 	            <hr>
-	            <div class="container">
+	            <div class="container-fluid">
 	            	<div class="row">
-	            		<div class="col-xs-6">
-	            			<h3 class="space-10">Name: <cite>${sessionScope.userDetails.name }</cite></h3>
-				            <h3 class="space-10">Username: <cite>${sessionScope.userDetails.username }</cite></h3>
-				            <h3 class="space-10">Email: <cite>${sessionScope.userDetails.email }</cite></h3>
+	            		<div class="col-9 col-xs-9">
+	            			<h3 class="space-10">Name: <cite>${requestScope.userDetails.name }</cite></h3>
 	            		</div>
-	            		<div class="col-xs-6">
+	            		<div class="col-3 col-xs-3 ">
             				<div class="space-10">
-            					<button type="button" class="btn btn-primary">Change password</button>
-            				</div>
-            				<div class="space-10">
-            				<button type="button" class="btn btn-primary">See purchase history</button>
-            				</div>
-            				<div class="space-10">
-            				<a href="wishList.jsp"><button type="button" class="btn btn-primary">See wish list</button></a>
+            					<a href="changePswd.jsp"><button type="button" class="btn btn-primary btn-lg btn-block pull-right">Change password</button></a>
             				</div>
 	            		</div>
-	            		
+	            	</div>
+	            	<div class="row">
+	            		<div class="col-9 col-xs-9">
+				            <h3 class="space-10">Username: <cite>${requestScope.userDetails.username }</cite></h3>
+	            		</div>
+	            		<div class="col-3 col-xs-3 ">
+            				<div class="space-10">
+            					<a href="OrderController?client=true&id=${requestScope.userDetails.id}"><button type="button" class="btn btn-primary btn-lg btn-block pull-right">See purchase history</button></a>
+            				</div>
+	            		</div>
+	            	</div>
+	            	<div class="row">
+	            		<div class="col-9 col-xs-9">
+	            			<h3 class="space-10">Email: <cite>${requestScope.userDetails.email }</cite></h3>
+	            		</div>
+	            		<div class="col-3 col-xs-3 ">
+            				<div class="space-10">
+            					<a href="wishList.jsp"><button type="button" class="btn btn-primary btn-lg btn-block pull-right">See wish list</button></a>
+            				</div>
+	            		</div>
 	            	</div>
 	            </div>
             

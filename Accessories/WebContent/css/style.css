@@ -10,6 +10,13 @@
 	background-position: center;
   background-size: cover;
 }
+.product{
+  background-image: url('../img/bg.jpg');
+	background-repeat: no-repeat;
+ 	background-attachment: fixed;
+	background-position: center;
+  background-size: cover;
+}
 .contact{
   background-image: url('../img/bg-02.png');
 	background-repeat: no-repeat;
@@ -96,24 +103,11 @@
 .navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a{
     color: #000;
 }
-.column{
-  float: left;
-  width: 50%;
-  height: 95vh;
-}
 /* Brightness-zoom Container */
 .product img {
   transition: transform 1s, filter 0.5s ease-in-out;
   transform-origin: center center;
   filter: brightness(100%);
-}
-
-/* The Transformation */
-.product-men:hover img {
-  filter: brightness(50%);
-}
-.product-women:hover img {
-  filter: brightness(50%);
 }
 
 .product:after {
@@ -126,15 +120,15 @@
 	position: relative;
 }
 .text-box-men a, .text-box-women a{
-	color: #fff;
+	color: #000;
 	text-decoration: none;
-	font-size: 48px;
+	font-size: 100px;
 }
 
 .text-box-men a:hover, .text-box-women a:hover{
-	color: #fff;
+	color: #000;
 	text-decoration: none;
-	font-size: 60px;
+	font-size: 125px;
 }
 
 .text-box-men{
@@ -269,4 +263,19 @@ h5{
 	box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
 	margin: 100px auto;
 	border-radius: 14px 0;
+}
+
+.thumbnail {
+    position: relative;
+}
+
+.caption {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    width: 100%;
+}
+
+.huge{
+	font-size: 150px;
 }

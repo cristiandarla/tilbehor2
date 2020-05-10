@@ -8,6 +8,7 @@ public class Order {
 	private Date date;
 	private int id, idUser;
 	private ArrayList<OrderItem> items;
+	private float totalPrice;
 	
 	public Order() {
 		items = new ArrayList<OrderItem>();
@@ -51,6 +52,13 @@ public class Order {
 	public void setItems(ArrayList<OrderItem> items) {
 		this.items = items;
 	}
-	
+
+	public float getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(float totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 	
 }

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,21 +11,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.OrderDAO;
-import util.Order;
-import util.WishlistItem;
+import DAO.UserDAO;
 
 /**
- * Servlet implementation class DeleteWController
+ * Servlet implementation class ResetPasswordController
  */
-@WebServlet("/DeleteWController")
-public class DeleteWController extends HttpServlet {
+@WebServlet("/ResetPasswordController")
+public class ResetPasswordController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteWController() {
+    public ResetPasswordController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,17 +32,28 @@ public class DeleteWController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<WishlistItem> items = (ArrayList<WishlistItem>) request.getSession().getAttribute("wishlist");
-		int id = Integer.parseInt(request.getParameter("id"));
-		for(WishlistItem item : items) {
-			if(item.getId() == id) {
-				items.remove(item);
-				break;
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		UserDAO udao = UserDAO.getInstance();
+		if(password == null) {
+			if(udao.emailExists(email)) {
+				request.setAttribute("email", email);
+				request.getRequestDispatcher("security2.jsp").forward(request, response);
+			}else {
+				List<String> errors = new ArrayList<>();
+				errors.add("Please, check for typos.");
+				request.setAttribute("errors", errors);
+				request.getRequestDispatcher("security.jsp").forward(request, response);
+			}
+		}else {
+			try {
+				udao.resetPassword(password, email);
+				response.sendRedirect("login.jsp");
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
-		request.getSession().setAttribute("wishlist", items);
-		response.sendRedirect("wishList.jsp");
-		
 	}
 
 	/**
