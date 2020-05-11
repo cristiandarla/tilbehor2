@@ -57,7 +57,7 @@
 					</div>
 					<div class="btn-group" role="group" aria-label="wishlist buttons">
 						 <div class="col-1 col-xs-2 text-right">
-					     <form method="post" action="ProductController?id=${wishlist.id}">
+					     <form method="post" action="SpecificProductController?id=${wishlist.id}">
 					      <button type="submit" class="btn btn-primary btn-xs" >
 					          <i class="fas fa-shopping-cart" aria-hidden="true"></i>
 					      </button>

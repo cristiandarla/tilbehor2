@@ -42,8 +42,15 @@ public class ProductListener implements ServletContextListener {
          // TODO Auto-generated method stub
     	Product p;
     	List<Product> products = new ArrayList<>();
-    	List<String> prodF = new ArrayList<>();
-    	List<String> prodM = new ArrayList<>();
+    	List<String> categ = new ArrayList<>();
+    	List<String> categF = new ArrayList<>();
+    	List<String> categM = new ArrayList<>();
+    	List<String> material = new ArrayList<>();
+    	List<String> materialF = new ArrayList<>();
+    	List<String> materialM = new ArrayList<>();
+    	List<String> brand = new ArrayList<>();
+    	List<String> brandF = new ArrayList<>();
+    	List<String> brandM = new ArrayList<>();
     	Statement statement;
 		try {
 	    	Connection con = DBConnection.getConnection();
@@ -69,18 +76,65 @@ public class ProductListener implements ServletContextListener {
 			}
 			arg0.getServletContext().setAttribute("products", products);
 			
-			//type of products female
-			resultSet = statement.executeQuery("select distinct category_product from products where description_product = 'female'");
+			
+			//type of products
+			resultSet = statement.executeQuery("select distinct category_product from products");
 			while(resultSet.next()) {
-				prodF.add(resultSet.getString("category_product"));
+				categ.add(resultSet.getString("category_product"));
 			}
-			arg0.getServletContext().setAttribute("typesProdF", prodF);
-			//type of products male
-			resultSet = statement.executeQuery("select distinct category_product from products where description_product = 'male'");
+			arg0.getServletContext().setAttribute("categ", categ);
+			//type of productsF
+			resultSet = statement.executeQuery("select distinct category_product from products where description_product='female'");
 			while(resultSet.next()) {
-				prodM.add(resultSet.getString("category_product"));
+				categF.add(resultSet.getString("category_product"));
 			}
-			arg0.getServletContext().setAttribute("typesProdM", prodM);
+			arg0.getServletContext().setAttribute("categF", categF);
+			//type of productsM
+			resultSet = statement.executeQuery("select distinct category_product from products where description_product='male'");
+			while(resultSet.next()) {
+				categM.add(resultSet.getString("category_product"));
+			}
+			arg0.getServletContext().setAttribute("categM", categM);
+			
+			//--------------------------------------
+			//material of products
+			resultSet = statement.executeQuery("select distinct material_product from products");
+			while(resultSet.next()) {
+				material.add(resultSet.getString("material_product"));
+			}
+			arg0.getServletContext().setAttribute("material", material);
+			//material of productsF
+			resultSet = statement.executeQuery("select distinct material_product from products where description_product='female'");
+			while(resultSet.next()) {
+				materialF.add(resultSet.getString("material_product"));
+			}
+			arg0.getServletContext().setAttribute("materialF", materialF);
+			//material of productsM
+			resultSet = statement.executeQuery("select distinct material_product from products where description_product='male'");
+			while(resultSet.next()) {
+				materialM.add(resultSet.getString("material_product"));
+			}
+			arg0.getServletContext().setAttribute("materialM", materialM);
+
+			//--------------------------------------
+			//brand of products
+			resultSet = statement.executeQuery("select distinct brand_product from products");
+			while(resultSet.next()) {
+				brand.add(resultSet.getString("brand_product"));
+			}
+			arg0.getServletContext().setAttribute("brand", brand);
+			//brand of productsF
+			resultSet = statement.executeQuery("select distinct brand_product from products where description_product='female'");
+			while(resultSet.next()) {
+				brandF.add(resultSet.getString("brand_product"));
+			}
+			arg0.getServletContext().setAttribute("brandF", brandF);
+			//brand of productsM
+			resultSet = statement.executeQuery("select distinct brand_product from products where description_product='male'");
+			while(resultSet.next()) {
+				brandM.add(resultSet.getString("brand_product"));
+			}
+			arg0.getServletContext().setAttribute("brandM", brandM);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

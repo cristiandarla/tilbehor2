@@ -8,7 +8,10 @@
 		<%@include file="/head.jspf" %>
 	</head>
     <body>
-        <div id="content">
+    	<c:if test="${not sessionScope.admin}">
+			<c:redirect url="home.jsp"></c:redirect>
+		</c:if>
+        <div id="content" class="container-fluid">
         <%@include file="/navbar.jspf" %>
             <div class="space">
             <h1>Add products:</h1>

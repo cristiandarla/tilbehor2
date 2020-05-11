@@ -53,7 +53,7 @@
     					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="message" required="required"></textarea>
 					  </div>
 					  <div class="form-check">
-					    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="privacy">
+					    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="privacy" required>
 					    <label class="form-check-label" for="exampleCheck1">privacy, blah blah blah blah</label>
 					  </div>
 					  <button type="submit" class="btn btn-primary" onclick="return Function()">Submit</button>

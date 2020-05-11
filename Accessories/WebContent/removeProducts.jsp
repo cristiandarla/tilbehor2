@@ -8,6 +8,9 @@
 		<%@include file="/head.jspf" %>
 	</head>
 	<body class="contact">
+		<c:if test="${not sessionScope.admin}">
+			<c:redirect url="home.jsp"></c:redirect>
+		</c:if>
 		<%@include file="/navbar.jspf" %>
 		<div class="container">
 		

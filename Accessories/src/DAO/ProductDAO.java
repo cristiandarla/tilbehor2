@@ -45,6 +45,8 @@ public class ProductDAO
 				p.setId(resultSet.getInt("id"));
 			}
 			resultSet.close();
+			statement.close();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

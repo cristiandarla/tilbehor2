@@ -12,7 +12,7 @@
 	<body class="register">
 	
 		<nav class="navbar-default navbar-static-top">
-			  <div class="container">
+			  <div class="container-fluid">
 			    <div class="navbar-header">
 			      <a class="navbar-brand" href="home.jsp">tilbehør</a>
 			    </div>
@@ -30,10 +30,10 @@
 				</label>
 				<input type="password" name="newpass" placeholder="New Password" id="password" required>
 				<c:forEach var="erori" items="${requestScope.errors}">
-					<p>${pageScope.erori}</p><br>
+					<h6 style="color: red;text-transform: uppercase;">${pageScope.erori}</h6>
 				</c:forEach>
-				<p>Forgot your password? Click <a href="security.jsp">here</a></p>
-				<input type="submit" value="Login">
+				<h6>Forgot your password? Click <a href="security.jsp">here</a></h6>
+				<input type="submit" value="Change Password">
 			</form>
 		</div>
 	<%@include file="/footer.jspf" %>

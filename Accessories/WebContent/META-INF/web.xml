@@ -4,12 +4,12 @@ xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
 http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID"
 version="4.0">
-<display-name>wad-classic-java</display-name>
+<display-name>tilbehor</display-name>
 <welcome-file-list>
 <welcome-file></welcome-file>
-<welcome-file>login.jsp</welcome-file>
-<welcome-file>register.jsp</welcome-file>
 <welcome-file>home.jsp</welcome-file>
+<welcome-file>register.jsp</welcome-file>
+<welcome-file>login.jsp</welcome-file>
 </welcome-file-list>
 <resource-ref>
 <description>DB Connection</description>

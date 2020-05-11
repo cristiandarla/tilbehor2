@@ -12,7 +12,7 @@
 	<body class="register">
 	
 		<nav class="navbar-default navbar navbar-expand-lg">
-		  <div class="container">
+		  <div class="container-fluid">
 		    <div class="navbar-header">
 		      <a class="navbar-brand" href="home.jsp">tilbehør</a>
 		    </div>

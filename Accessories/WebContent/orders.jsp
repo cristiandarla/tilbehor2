@@ -8,11 +8,14 @@
 		<%@include file="/head.jspf" %>
 	</head>
     <body>
+    	<c:if test="${not sessionScope.admin}">
+			<c:redirect url="home.jsp"></c:redirect>
+		</c:if>
     	<%@include file="/navbar.jspf" %>
         <div class="space">
         	<h1>Orders:</h1>
            	<hr>
-            <div class="container">
+            <div class="container-fluid">
             	<div class="row space-10">
             		<div class="col-xs-2 col-sm-2">
             		<h4>NO. ORDER</h4>
@@ -40,7 +43,7 @@
 			        	<h4>${order.date}</h4>
 			        </div>
 			        <div class="col-3 col-xs-3\">
-				        <a class="btn btn-primary pull-right" data-toggle="collapse" href="#order-${order.id}" role="button" aria-expanded="false" aria-controls="order-${order.id}">
+				        <a class="btn btn-primary float-right" data-toggle="collapse" href="#order-${order.id}" role="button" aria-expanded="false" aria-controls="order-${order.id}">
 	   					Show more
 	   					</a>
 			        </div>
@@ -57,10 +60,8 @@
 	                            <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
 	                    			<h5>PRICE</h5>
 	                            </div>
-	                            <div class="col-4 col-sm-4 col-md-4">
+	                            <div class="col-6 col-sm-6 col-md-6">
 	                    			<h5>QUANTITY</h5>
-	                            </div>
-	                            <div class="col-2 col-sm-2 col-md-2 text-right">
 	                            </div>
 	                        </div>
 						</div>
@@ -79,8 +80,6 @@
                             </div>
                             <div class="col-4 col-sm-4 col-md-4">
                     			<h5>${product.qty}</h5>
-                            </div>
-                            <div class="col-2 col-sm-2 col-md-2 text-right">
                             </div>
                         </div>
 					</div>
