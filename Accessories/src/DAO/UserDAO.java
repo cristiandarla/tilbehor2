@@ -53,6 +53,8 @@ public class UserDAO
             	errors.add("Wrong password or username");
             }
     		resultSet.close();
+            statement.close();
+            connection.close();
 		}catch (SQLException e) {
 	        System.out.println("Connection failure.");
 	        e.printStackTrace();

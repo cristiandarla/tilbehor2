@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
      <head>
-		<title>Add Products</title>
+		<title>tilbehør - checkout</title>
 		<%@include file="/head.jspf" %>
 	</head>
     <body>
